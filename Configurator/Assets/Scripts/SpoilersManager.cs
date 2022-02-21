@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -13,9 +14,13 @@ public class SpoilersManager : MonoBehaviour
     public List<Spoilers> spoilerList = new List<Spoilers>();
     private int currentSpoiler = 0;
 
+    private void Start()
+    {
+        SetColor();
+    }
+
     public void NextSpoiler()
     {
-        //spoilerList[currentSpoiler].spoilerObject.GetComponent<Material>().color = ApplyColor.myColour;
         for (int i = 0; i < spoilerList[currentSpoiler].spoilerObject.Length; i++)
         {
             spoilerList[currentSpoiler].spoilerObject[i].SetActive(false);
@@ -30,6 +35,13 @@ public class SpoilersManager : MonoBehaviour
             spoilerList[currentSpoiler].spoilerObject[i].SetActive(true);
             spoilerList[currentSpoiler].spoilerObject[i].GetComponent<Renderer>().material.color = ApplyColor.myColour;
         }
-        
+    }
+
+    public void SetColor()
+    {
+        for (int i = 0; i < spoilerList[currentSpoiler].spoilerObject.Length; i++)
+        {
+            spoilerList[currentSpoiler].spoilerObject[i].GetComponent<Renderer>().material.color = ApplyColor.myColour;
+        }
     }
 }

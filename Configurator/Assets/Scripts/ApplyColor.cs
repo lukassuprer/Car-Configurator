@@ -9,6 +9,11 @@ public class ApplyColor : MonoBehaviour
     public Material material;
     public static Color myColour;
 
+    private void Awake()
+    {
+        myColour = material.color;
+    }
+
     public void ChooseColor(string color)
     {
         myColour = Color.clear; ColorUtility.TryParseHtmlString (color, out myColour);
