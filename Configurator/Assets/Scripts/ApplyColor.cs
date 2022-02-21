@@ -1,15 +1,16 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting.Antlr3.Runtime;
 using UnityEngine;
 
 public class ApplyColor : MonoBehaviour
 {
-    public FlexibleColorPicker colorPicker;
     public Material material;
 
-    private void Update()
+    public void ChooseColor(string color)
     {
-        material.color = colorPicker.color;
+        Color myColour = Color.clear; ColorUtility.TryParseHtmlString (color, out myColour);
+        material.color = myColour;
     }
 }
