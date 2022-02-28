@@ -18,7 +18,6 @@ public class ButtonAnimation : MonoBehaviour
     {
         if (isOpened == false)
         {
-            Debug.Log("opened");
             menuAnimator.SetBool("open", true);
             buttonAnimator.SetBool("open", true);
             buttonText.text = ">";
