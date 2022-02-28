@@ -11,6 +11,7 @@ public class ButtonAnimation : MonoBehaviour
     public TextMeshProUGUI buttonText;
     public TextMeshProUGUI wheelText;
     public TextMeshProUGUI spoilerText;
+    public TextMeshProUGUI soundText;
     private bool isOpened;
 
     public void OnClick()
@@ -23,6 +24,7 @@ public class ButtonAnimation : MonoBehaviour
             buttonText.text = ">";
             spoilerText.text = "s";
             wheelText.text = "w";
+            soundText.text = "e";
             isOpened = true;
         }
         else
@@ -32,6 +34,7 @@ public class ButtonAnimation : MonoBehaviour
             buttonText.text = "<";
             spoilerText.text = "";
             wheelText.text = "";
+            soundText.text = "";
             isOpened = false;
         }
     }
