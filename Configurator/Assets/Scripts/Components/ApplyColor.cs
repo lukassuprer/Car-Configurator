@@ -34,10 +34,10 @@ public class ApplyColor : MonoBehaviour
 
     public void ChooseColor(string color)
     {
-        foreach (var colorVar in listColors)
+        /*foreach (var colorVar in listColors)
         {
             colorVar.colorValue = myColour;
-        }
+        }*/
 
         myColour = Color.clear;
         ColorUtility.TryParseHtmlString(color, out myColour);

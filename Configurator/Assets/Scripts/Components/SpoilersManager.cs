@@ -1,34 +1,39 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class SpoilersManager : MonoBehaviour
 {
     [System.Serializable]
     public class Spoilers
     {
+        public int index;
         public GameObject[] spoilerObject;
     }
     
     public List<Spoilers> spoilerList = new List<Spoilers>();
     private int currentSpoiler = 0;
+    public GameObject spoilerButton;
+    public Transform spoilerHolder;
 
     private void Start()
     {
         SetColor();
+        SummonUI();
     }
 
-    public void NextSpoiler()
+    public void NextSpoiler(int index)
     {
-        for (int i = 0; i < spoilerList[currentSpoiler].spoilerObject.Length; i++)
+        currentSpoiler = index;
+        for (int i = 0; i < spoilerList.Count; i++)
         {
-            spoilerList[currentSpoiler].spoilerObject[i].SetActive(false);
-        }
-        currentSpoiler++;
-        if (currentSpoiler >= spoilerList.Count)
-        {
-            currentSpoiler = 0;
+            for (int j = 0; j < spoilerList[i].spoilerObject.Length; j++)
+            {
+                spoilerList[i].spoilerObject[j].SetActive(false);
+            }
         }
         for (int i = 0; i < spoilerList[currentSpoiler].spoilerObject.Length; i++)
         {
@@ -42,6 +47,17 @@ public class SpoilersManager : MonoBehaviour
         for (int i = 0; i < spoilerList[currentSpoiler].spoilerObject.Length; i++)
         {
             spoilerList[currentSpoiler].spoilerObject[i].GetComponent<Renderer>().material.color = ApplyColor.myColour;
+        }
+    }
+
+    private void SummonUI()
+    {
+        foreach (var spoiler in spoilerList)
+        {
+            GameObject button = Instantiate(spoilerButton, spoilerHolder.position, spoilerHolder.rotation, spoilerHolder);
+            button.name = spoiler.index.ToString();
+            button.GetComponent<Button>().GetComponentInChildren<TextMeshProUGUI>().text = spoiler.index.ToString();
+            button.GetComponent<Button>().onClick.AddListener(delegate { NextSpoiler(spoiler.index); });
         }
     }
 }
