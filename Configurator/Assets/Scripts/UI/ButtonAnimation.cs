@@ -7,11 +7,19 @@ using TMPro;
 public class ButtonAnimation : MonoBehaviour
 {
     public Animator menuAnimator;
+    public Animator colorsAnimator;
     public Animator buttonAnimator;
+    public Animator spoilerAnimator;
+    
     public TextMeshProUGUI buttonText;
     public TextMeshProUGUI wheelText;
     public TextMeshProUGUI spoilerText;
     public TextMeshProUGUI soundText;
+
+    public SpoilersManager spoilersManager;
+    public WheelsManager wheelsManager;
+    public ApplyColor applyColor;
+    
     private bool isOpened;
 
     public void OnClick()
@@ -28,8 +36,14 @@ public class ButtonAnimation : MonoBehaviour
         }
         else
         {
+            colorsAnimator.SetBool("open", false);
             menuAnimator.SetBool("open", false);
             buttonAnimator.SetBool("open", false);
+
+            applyColor.isOpened = false;
+            spoilersManager.Close();
+            wheelsManager.Close();
+            
             buttonText.text = "<";
             spoilerText.text = "";
             wheelText.text = "";

@@ -21,6 +21,8 @@ public class ApplyColor : MonoBehaviour
     public GameObject colorButton;
     public Transform buttonHolder;
     public SpoilersManager spoilersManager;
+    public Animator animator;
+    public bool isOpened;
 
     private void Awake()
     {
@@ -54,6 +56,20 @@ public class ApplyColor : MonoBehaviour
             button.name = color.name;
             button.GetComponent<Button>().onClick.AddListener(delegate { ChooseColor(color.name); });
             button.GetComponent<Button>().onClick.AddListener(delegate { spoilersManager.SetColor(); });
+            button.GetComponent<Outline>().effectColor = color.colorValue;
+        }
+    }
+
+    public void OpenUI()
+    {
+        if (!isOpened)
+        {
+            animator.SetBool("open", true);
+            isOpened = true;
+        }else if (isOpened)
+        {
+            animator.SetBool("open", false);
+            isOpened = false;
         }
     }
 }
