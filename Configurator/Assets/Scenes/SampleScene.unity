@@ -2519,6 +2519,18 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 717514588}
+        m_TargetAssemblyTypeName: ChangePosition, Assembly-CSharp
+        m_MethodName: OnClickSpoiler
+        m_Mode: 3
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 1
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &222583982
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2557,6 +2569,37 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 222583979}
   m_CullTransparentMesh: 1
+--- !u!1 &227936013
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 227936014}
+  m_Layer: 0
+  m_Name: Wheel Camera
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &227936014
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 227936013}
+  m_LocalRotation: {x: 0, y: -0.7071068, z: 0, w: 0.7071068}
+  m_LocalPosition: {x: 2.435, y: -0.415, z: 0.096}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 10
+  m_LocalEulerAnglesHint: {x: 0, y: -90, z: 0}
 --- !u!1 &237331605
 GameObject:
   m_ObjectHideFlags: 0
@@ -5186,6 +5229,7 @@ MonoBehaviour:
   spoilersManager: {fileID: 1579225946}
   wheelsManager: {fileID: 677606028}
   applyColor: {fileID: 1562703560}
+  changePosition: {fileID: 717514588}
 --- !u!1 &484660030
 GameObject:
   m_ObjectHideFlags: 3
@@ -5751,6 +5795,18 @@ MonoBehaviour:
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 717514585}
+        m_TargetAssemblyTypeName: ButtonAnimation, Assembly-CSharp
+        m_MethodName: 
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: 
           m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: 
@@ -7880,7 +7936,7 @@ MonoBehaviour:
   wheelHolder: {fileID: 1662511726}
   wheelButton: {fileID: 4467393994327345678, guid: 401d2f3d3b69d482d9b76c0b7cb90391, type: 3}
   animator: {fileID: 1662511729}
-  isOpened: 0
+  changePosition: {fileID: 717514588}
 --- !u!4 &677606029
 Transform:
   m_ObjectHideFlags: 0
@@ -8118,6 +8174,7 @@ GameObject:
   m_Component:
   - component: {fileID: 717514586}
   - component: {fileID: 717514587}
+  - component: {fileID: 717514588}
   m_Layer: 0
   m_Name: Camera Rig
   m_TagString: Untagged
@@ -8157,11 +8214,28 @@ MonoBehaviour:
   moveSpeed: 100
   zoomSpeed: 100
   minDistance: 3
-  maxDistance: 10
-  minAngle: -5
+  maxDistance: 20
+  minAngle: -2
   maxAngle: 80
   CameraRig: {fileID: 717514586}
   Camera: {fileID: 963194228}
+--- !u!114 &717514588
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 717514585}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 784f17d4d58dc4c828ebd1d856c5aeb1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Camera: {fileID: 963194228}
+  cameraRig: {fileID: 717514585}
+  positionsList:
+  - positionGameObject: {fileID: 227936014}
+  - positionGameObject: {fileID: 1733330791}
 --- !u!1 &722911287
 GameObject:
   m_ObjectHideFlags: 0
@@ -16317,6 +16391,18 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 717514588}
+        m_TargetAssemblyTypeName: ChangePosition, Assembly-CSharp
+        m_MethodName: OnClickColor
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1303816777
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -19518,6 +19604,7 @@ MonoBehaviour:
   spoilersManager: {fileID: 1579225946}
   animator: {fileID: 237331608}
   isOpened: 0
+  changePosition: {fileID: 717514588}
 --- !u!1 &1575858670
 GameObject:
   m_ObjectHideFlags: 0
@@ -19718,7 +19805,7 @@ MonoBehaviour:
   spoilerButton: {fileID: 4467393994327345678, guid: 401d2f3d3b69d482d9b76c0b7cb90391, type: 3}
   spoilerHolder: {fileID: 2137890195}
   animator: {fileID: 2137890198}
-  isOpened: 0
+  changePosition: {fileID: 717514588}
 --- !u!4 &1579225947
 Transform:
   m_ObjectHideFlags: 0
@@ -21447,6 +21534,37 @@ LODGroup:
     renderers:
     - renderer: {fileID: 1348896679}
   m_Enabled: 1
+--- !u!1 &1733330790
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1733330791}
+  m_Layer: 0
+  m_Name: Spoiler Camera
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1733330791
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1733330790}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -0.098, y: 0.625, z: -2.134}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 9
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1745151819
 GameObject:
   m_ObjectHideFlags: 0
@@ -23748,6 +23866,18 @@ MonoBehaviour:
         m_TargetAssemblyTypeName: WheelsManager, Assembly-CSharp
         m_MethodName: OpenUI
         m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 717514588}
+        m_TargetAssemblyTypeName: ChangePosition, Assembly-CSharp
+        m_MethodName: OnClickWheel
+        m_Mode: 3
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine

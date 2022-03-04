@@ -23,6 +23,7 @@ public class ApplyColor : MonoBehaviour
     public SpoilersManager spoilersManager;
     public Animator animator;
     public bool isOpened;
+    public ChangePosition changePosition;
 
     private void Awake()
     {
@@ -56,6 +57,7 @@ public class ApplyColor : MonoBehaviour
             button.name = color.name;
             button.GetComponent<Button>().onClick.AddListener(delegate { ChooseColor(color.name); });
             button.GetComponent<Button>().onClick.AddListener(delegate { spoilersManager.SetColor(); });
+            button.GetComponent<Button>().onClick.AddListener(delegate { changePosition.EnableCam(); });
             button.GetComponent<Outline>().effectColor = color.colorValue;
         }
     }

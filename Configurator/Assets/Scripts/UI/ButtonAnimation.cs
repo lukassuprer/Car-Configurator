@@ -19,6 +19,7 @@ public class ButtonAnimation : MonoBehaviour
     public SpoilersManager spoilersManager;
     public WheelsManager wheelsManager;
     public ApplyColor applyColor;
+    public ChangePosition changePosition;
     
     private bool isOpened;
 
@@ -39,6 +40,7 @@ public class ButtonAnimation : MonoBehaviour
             colorsAnimator.SetBool("open", false);
             menuAnimator.SetBool("open", false);
             buttonAnimator.SetBool("open", false);
+            changePosition.EnableCam();
 
             applyColor.isOpened = false;
             spoilersManager.Close();

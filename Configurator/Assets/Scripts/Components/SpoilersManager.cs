@@ -23,8 +23,9 @@ public class SpoilersManager : MonoBehaviour
     public GameObject spoilerButton;
     public Transform spoilerHolder;
     public Animator animator;
-    public bool isOpened;
+    public static bool isOpened;
     private Texture2D icon;
+    public ChangePosition changePosition;
 
     private void Start()
     {
@@ -64,6 +65,7 @@ public class SpoilersManager : MonoBehaviour
             GameObject button = Instantiate(spoilerButton, spoilerHolder.position, spoilerHolder.rotation, spoilerHolder);
             button.name = spoiler.index.ToString();
             button.GetComponent<Button>().onClick.AddListener(delegate { NextSpoiler(spoiler.index); });
+            button.GetComponent<Button>().onClick.AddListener(delegate { changePosition.OnClickSpoilerButton(1); });
             button.GetComponent<Button>().image.sprite = spoiler.imageIcon;
             buttonsList.Add(button);
         }
@@ -82,20 +84,12 @@ public class SpoilersManager : MonoBehaviour
     public void Open()
     {
         animator.SetBool("open", true);
-        foreach (var button in buttonsList)
-        {
-            //button.GetComponent<Button>().GetComponentInChildren<TextMeshProUGUI>().text = button.name;
-        }
         isOpened = true;
     }
 
     public void Close()
     {
         animator.SetBool("open", false);
-        foreach (var button in buttonsList)
-        {
-            //button.GetComponent<Button>().GetComponentInChildren<TextMeshProUGUI>().text = "";
-        }
         isOpened = false;
     }
 }

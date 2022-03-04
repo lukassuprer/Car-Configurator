@@ -20,13 +20,14 @@ public class WheelsManager : MonoBehaviour
     public GameObject wheelButton;
     private int currentWheels = 0;
     public Animator animator;
-    public bool isOpened;
+    public static bool isOpened;
+    public ChangePosition changePosition;
 
     private void Start()
     {
         SummonUI();
     }
-    
+
     public void NextWheel(int index)
     {
         /*wheelsList[currentWheels].wheelsObject.SetActive(false);
@@ -47,7 +48,7 @@ public class WheelsManager : MonoBehaviour
             wheelsList[currentWheels].wheelsObject.SetActive(true);
         }
     }
-    
+
     private void SummonUI()
     {
         foreach (var wheel in wheelsList)
@@ -56,6 +57,7 @@ public class WheelsManager : MonoBehaviour
             button.name = wheel.index.ToString();
             //button.GetComponent<Button>().GetComponentInChildren<TextMeshProUGUI>().text = wheel.index.ToString();
             button.GetComponent<Button>().onClick.AddListener(delegate { NextWheel(wheel.index); });
+            button.GetComponent<Button>().onClick.AddListener(delegate { changePosition.OnClickWheelsButton(0); });
             button.GetComponent<Button>().image.sprite = wheel.imageIcon;
             buttonsList.Add(button);
         }
@@ -75,20 +77,12 @@ public class WheelsManager : MonoBehaviour
     public void Open()
     {
         animator.SetBool("open", true);
-        foreach (var button in buttonsList)
-        {
-            //button.GetComponent<Button>().GetComponentInChildren<TextMeshProUGUI>().text = button.name;
-        }
         isOpened = true;
     }
 
     public void Close()
     {
         animator.SetBool("open", false);
-        foreach (var button in buttonsList)
-        {
-            //button.GetComponent<Button>().GetComponentInChildren<TextMeshProUGUI>().text = "";
-        }
         isOpened = false;
     }
 }

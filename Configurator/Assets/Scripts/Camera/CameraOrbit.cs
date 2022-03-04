@@ -26,6 +26,7 @@ public class CameraOrbit : MonoBehaviour
     
     private float rotationX;
     private float rotationY;
+
     private void Update()
     {
         CameraControl();
@@ -77,5 +78,10 @@ public class CameraOrbit : MonoBehaviour
             return;
         }
         Camera.Translate(0f, 0f, (Input.GetAxis("Mouse ScrollWheel") * Time.deltaTime) * zoomSpeed, Space.Self);
+    }
+
+    public void UnZoomCamera()
+    {
+        Camera.Translate(0f, 0f, -10 * Time.deltaTime * zoomSpeed, Space.Self);
     }
 }
