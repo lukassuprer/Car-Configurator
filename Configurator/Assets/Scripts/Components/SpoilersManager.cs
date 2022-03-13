@@ -26,6 +26,7 @@ public class SpoilersManager : MonoBehaviour
     public static bool isOpened;
     private Texture2D icon;
     public ChangePosition changePosition;
+    public SaveManager saveManager;
 
     private void Start()
     {
@@ -48,6 +49,8 @@ public class SpoilersManager : MonoBehaviour
             spoilerList[currentSpoiler].spoilerObject[i].SetActive(true);
             spoilerList[currentSpoiler].spoilerObject[i].GetComponent<Renderer>().material.color = ApplyColor.myColour;
         }
+
+        saveManager.SetSpoilerIndex(currentSpoiler);
     }
 
     public void SetColor()
@@ -64,9 +67,10 @@ public class SpoilersManager : MonoBehaviour
         {
             GameObject button = Instantiate(spoilerButton, spoilerHolder.position, spoilerHolder.rotation, spoilerHolder);
             button.name = spoiler.index.ToString();
-            button.GetComponent<Button>().onClick.AddListener(delegate { NextSpoiler(spoiler.index); });
-            button.GetComponent<Button>().onClick.AddListener(delegate { changePosition.OnClickSpoilerButton(1); });
-            button.GetComponent<Button>().image.sprite = spoiler.imageIcon;
+            Button objectButton = button.GetComponent<Button>();
+            objectButton.onClick.AddListener(delegate { NextSpoiler(spoiler.index); });
+            objectButton.onClick.AddListener(delegate { changePosition.OnClickSpoilerButton(1); });
+            objectButton.image.sprite = spoiler.imageIcon;
             buttonsList.Add(button);
         }
     }

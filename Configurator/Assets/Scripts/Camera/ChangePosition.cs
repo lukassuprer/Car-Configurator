@@ -51,13 +51,13 @@ public class ChangePosition : MonoBehaviour
     public void OnClickColor()
     {
         EnableCam();
+        //Camera.position = new Vector3(Camera.position.x, Camera.position.y, Camera.position.z + 10);
     }
 
     private void DisableCam(int index)
     {
         Camera.position = positionsList[index].positionGameObject.position;
         Camera.rotation = positionsList[index].positionGameObject.rotation;
-
         cameraRig.GetComponent<CameraOrbit>().enabled = false;
     }
 
@@ -66,6 +66,6 @@ public class ChangePosition : MonoBehaviour
         cameraRig.GetComponent<CameraOrbit>().enabled = true;
         Camera.position = cameraRig.transform.position;
         Camera.rotation = cameraRig.transform.rotation;
-        cameraRig.GetComponent<CameraOrbit>().UnZoomCamera();
+        //cameraRig.GetComponent<CameraOrbit>().UnZoomCamera();
     }
 }

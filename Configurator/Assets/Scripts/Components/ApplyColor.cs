@@ -24,6 +24,9 @@ public class ApplyColor : MonoBehaviour
     public Animator animator;
     public bool isOpened;
     public ChangePosition changePosition;
+    public SaveManager saveManager;
+    private List<Image> materialColors = new List<Image>();
+    private Color materialColor;
 
     private void Awake()
     {
@@ -37,14 +40,10 @@ public class ApplyColor : MonoBehaviour
 
     public void ChooseColor(string color)
     {
-        /*foreach (var colorVar in listColors)
-        {
-            colorVar.colorValue = myColour;
-        }*/
-
         myColour = Color.clear;
         ColorUtility.TryParseHtmlString(color, out myColour);
         material.color = myColour;
+        saveManager.SetColorName(color);
     }
 
     private void SummonUI()
@@ -52,13 +51,15 @@ public class ApplyColor : MonoBehaviour
         foreach (var color in listColors)
         {
             GameObject button = Instantiate(colorButton, buttonHolder.position, buttonHolder.rotation, buttonHolder);
-            color.colorValue.a = 255f;
+            color.colorValue.a = 0f;
             button.GetComponent<Image>().color = color.colorValue;
             button.name = color.name;
-            button.GetComponent<Button>().onClick.AddListener(delegate { ChooseColor(color.name); });
-            button.GetComponent<Button>().onClick.AddListener(delegate { spoilersManager.SetColor(); });
-            button.GetComponent<Button>().onClick.AddListener(delegate { changePosition.EnableCam(); });
+            Button objectButton = button.GetComponent<Button>();
+            objectButton.onClick.AddListener(delegate { ChooseColor(color.name); });
+            objectButton.onClick.AddListener(delegate { spoilersManager.SetColor(); });
+            objectButton.onClick.AddListener(delegate { changePosition.EnableCam(); });
             button.GetComponent<Outline>().effectColor = color.colorValue;
+            materialColors.Add(objectButton.image);
         }
     }
 
@@ -68,10 +69,29 @@ public class ApplyColor : MonoBehaviour
         {
             animator.SetBool("open", true);
             isOpened = true;
+            for (int i = 0; i < materialColors.Count; i++)
+            {
+                materialColor = materialColors[i].color;
+                materialColor.a = 255f;
+                materialColors[i].color = materialColor;
+            }
+            
         }else if (isOpened)
         {
             animator.SetBool("open", false);
             isOpened = false;
+            waitClose();
+        }
+    }
+
+    IEnumerator waitClose()
+    {
+        yield return new WaitForSeconds(1);
+        for (int i = 0; i < materialColors.Count; i++)
+        {
+            materialColor = materialColors[i].color;
+            materialColor.a = 0;
+            materialColors[i].color = materialColor;
         }
     }
 }

@@ -22,6 +22,7 @@ public class WheelsManager : MonoBehaviour
     public Animator animator;
     public static bool isOpened;
     public ChangePosition changePosition;
+    public SaveManager saveManager;
 
     private void Start()
     {
@@ -30,14 +31,6 @@ public class WheelsManager : MonoBehaviour
 
     public void NextWheel(int index)
     {
-        /*wheelsList[currentWheels].wheelsObject.SetActive(false);
-        currentWheels++;
-        if (currentWheels >= wheelsList.Count)
-        {
-            currentWheels = 0;
-        }
-        wheelsList[currentWheels].wheelsObject.SetActive(true);*/
-        
         currentWheels = index;
         for (int i = 0; i < wheelsList.Count; i++)
         {
@@ -47,6 +40,8 @@ public class WheelsManager : MonoBehaviour
         {
             wheelsList[currentWheels].wheelsObject.SetActive(true);
         }
+
+        saveManager.SetWheelsIndex(currentWheels);
     }
 
     private void SummonUI()
@@ -55,10 +50,10 @@ public class WheelsManager : MonoBehaviour
         {
             GameObject button = Instantiate(wheelButton, wheelHolder.position, wheelHolder.rotation, wheelHolder);
             button.name = wheel.index.ToString();
-            //button.GetComponent<Button>().GetComponentInChildren<TextMeshProUGUI>().text = wheel.index.ToString();
-            button.GetComponent<Button>().onClick.AddListener(delegate { NextWheel(wheel.index); });
-            button.GetComponent<Button>().onClick.AddListener(delegate { changePosition.OnClickWheelsButton(0); });
-            button.GetComponent<Button>().image.sprite = wheel.imageIcon;
+            Button objectButton = button.GetComponent<Button>();
+            objectButton.onClick.AddListener(delegate { NextWheel(wheel.index); });
+            objectButton.onClick.AddListener(delegate { changePosition.OnClickWheelsButton(0); });
+            objectButton.image.sprite = wheel.imageIcon;
             buttonsList.Add(button);
         }
     }
