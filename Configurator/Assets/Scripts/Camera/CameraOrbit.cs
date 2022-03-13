@@ -27,7 +27,6 @@ public class CameraOrbit : MonoBehaviour
     private float rotationX;
     private float rotationY;
     
-    private bool farEnough;
 
     private void Update()
     {
@@ -82,12 +81,9 @@ public class CameraOrbit : MonoBehaviour
         Camera.Translate(0f, 0f, (Input.GetAxis("Mouse ScrollWheel") * Time.deltaTime) * zoomSpeed, Space.Self);
     }
 
-    /*public void UnZoomCamera()
+    public void UnZoomCamera()
     {
         //Změnit to na pozici haha
-        if (!farEnough)
-        {
-            Camera.Translate(0f, 0f, -10 * Time.deltaTime * zoomSpeed, Space.Self);
-        }
-    }*/
+        //Camera.Translate(, Space.Self);
+    }
 }

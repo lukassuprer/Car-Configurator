@@ -60,7 +60,7 @@ public class ApplyColor : MonoBehaviour
             Button objectButton = button.GetComponent<Button>();
             objectButton.onClick.AddListener(delegate { ChooseColor(color.name); });
             objectButton.onClick.AddListener(delegate { spoilersManager.SetColor(); });
-            objectButton.onClick.AddListener(delegate { changePosition.EnableCam(); });
+            objectButton.onClick.AddListener(delegate { changePosition.OnClickColor(); });
             button.GetComponent<Outline>().effectColor = color.colorValue;
             materialColors.Add(objectButton.image);
         }
