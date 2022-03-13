@@ -19,7 +19,7 @@ public class SpoilersManager : MonoBehaviour
     
     public List<Spoilers> spoilerList = new List<Spoilers>();
     private List<GameObject> buttonsList = new List<GameObject>();
-    private int currentSpoiler = 0;
+    public int currentSpoiler = 0;
     public GameObject spoilerButton;
     public Transform spoilerHolder;
     public Animator animator;

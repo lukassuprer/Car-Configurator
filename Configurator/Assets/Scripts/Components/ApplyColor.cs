@@ -27,10 +27,12 @@ public class ApplyColor : MonoBehaviour
     public SaveManager saveManager;
     private List<Image> materialColors = new List<Image>();
     private Color materialColor;
+    public string myStringColor;
 
     private void Awake()
     {
         myColour = material.color;
+        myStringColor = ColorUtility.ToHtmlStringRGBA(material.color);
     }
 
     private void Start()
@@ -41,6 +43,7 @@ public class ApplyColor : MonoBehaviour
     public void ChooseColor(string color)
     {
         myColour = Color.clear;
+        myStringColor = color;
         ColorUtility.TryParseHtmlString(color, out myColour);
         material.color = myColour;
         saveManager.SetColorName(color);

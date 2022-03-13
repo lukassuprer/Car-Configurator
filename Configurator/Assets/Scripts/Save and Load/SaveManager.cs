@@ -26,6 +26,7 @@ public class SaveManager : MonoBehaviour
     private void Start()
     {
         saveObject = new SaveObject();
+        SetValues();
         //SaveDataList saveList = GetSaveData();
         saveDataList = GetSaveData();
         SpawnUISave();
@@ -54,6 +55,7 @@ public class SaveManager : MonoBehaviour
         if (saveDataList.saveList.Count <= 0)
         {
             saveObject = new SaveObject();
+            SetValues();
             saveDataList.saveList.Add(saveObject);
         }
     }
@@ -128,7 +130,7 @@ public class SaveManager : MonoBehaviour
         spoilersManager.NextSpoiler(spoilerIndex);
         //Wheels
         int wheelsIndex = saveDataList.saveList[index].wheelsIndex;
-        wheelsManager.NextWheel(index);
+        wheelsManager.NextWheel(wheelsIndex);
     }
 
     public void SaveButton()
@@ -147,6 +149,7 @@ public class SaveManager : MonoBehaviour
         saveDataList = GetSaveData();
         SpawnUISave();
         saveObject = new SaveObject();
+        SetValues();
         saveDataList.saveList.Add(saveObject);
     }
 
@@ -165,8 +168,16 @@ public class SaveManager : MonoBehaviour
             saveDataList = GetSaveData();
             SpawnUISave();
             saveObject = new SaveObject();
+            SetValues();
             saveDataList.saveList.Add(saveObject);
         }
+    }
+
+    private void SetValues()
+    {
+        saveObject.colorName = applyColor.myStringColor;
+        saveObject.spoilerIndex = spoilersManager.currentSpoiler;
+        saveObject.wheelsIndex = wheelsManager.currentWheels;
     }
 
     private void SpawnUISave()

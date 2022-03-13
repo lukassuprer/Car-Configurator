@@ -18,7 +18,7 @@ public class WheelsManager : MonoBehaviour
     private List<GameObject> buttonsList = new List<GameObject>();
     public Transform wheelHolder;
     public GameObject wheelButton;
-    private int currentWheels = 0;
+    public int currentWheels = 0;
     public Animator animator;
     public static bool isOpened;
     public ChangePosition changePosition;
