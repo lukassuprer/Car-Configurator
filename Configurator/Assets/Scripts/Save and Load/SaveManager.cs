@@ -16,9 +16,13 @@ public class SaveManager : MonoBehaviour
     public ApplyColor applyColor;
     
     public GameObject saveButton;
-    public Transform saveHolder;
+    public Transform loadHolder;
+    public Transform deleteHolder;
     public TMP_InputField inputDeleteField;
-    public GameObject enterButton;
+    public Animator loadAnimator;
+    public Animator loadButtonAnimator;
+    public GameObject saveMenu;
+    private bool isOpen = false;
     private string path => $"{Application.dataPath}/SavedPresets.json";
     
 
@@ -57,6 +61,20 @@ public class SaveManager : MonoBehaviour
             saveObject = new SaveObject();
             SetValues();
             saveDataList.saveList.Add(saveObject);
+        }
+
+        if (isOpen == true)
+        {
+            foreach (Transform child in loadHolder)
+            {
+                child.GetComponentInChildren<TextMeshProUGUI>().fontSize = 9;
+                child.GetComponent<Outline>().enabled = true;
+            }
+            foreach (Transform child in deleteHolder)
+            {
+                child.GetComponentInChildren<TextMeshProUGUI>().fontSize = 9;
+                child.GetComponent<Outline>().enabled = true;
+            }
         }
     }
 
@@ -135,15 +153,13 @@ public class SaveManager : MonoBehaviour
 
     public void SaveButton()
     {
-        inputDeleteField.gameObject.SetActive(true);
-        enterButton.SetActive(true);
+        saveMenu.SetActive(true);
     }
 
     public void EnterButton()
     {
         saveObject.presetName = inputDeleteField.text;
-        enterButton.SetActive(false);
-        inputDeleteField.gameObject.SetActive(false);
+        saveMenu.SetActive(true);
         //saveDataList.saveList.Add(saveObject);
         SaveData(saveDataList);
         saveDataList = GetSaveData();
@@ -155,7 +171,7 @@ public class SaveManager : MonoBehaviour
 
     public void CancelButton()
     {
-        
+        saveMenu.SetActive(false);
     }
     public void DeletePreset(int index)
     {
@@ -182,26 +198,67 @@ public class SaveManager : MonoBehaviour
 
     private void SpawnUISave()
     {
-        foreach (Transform child in saveHolder)
+            Debug.Log("pls");
+        foreach (Transform child in loadHolder)
+        {
+            Destroy(child.gameObject);
+        }
+        foreach (Transform child in deleteHolder)
         {
             Destroy(child.gameObject);
         }
 
         foreach (var save in saveDataList.saveList)
         {
-            GameObject button = Instantiate(saveButton, saveHolder.position, saveHolder.rotation, saveHolder);
+            GameObject button = Instantiate(saveButton, loadHolder.position, loadHolder.rotation, loadHolder);
             Button objectButton = button.GetComponent<Button>();
             objectButton.onClick.AddListener(delegate { GetValues(saveDataList.saveList.IndexOf(save)); });
             objectButton.GetComponentInChildren<TextMeshProUGUI>().text = save.presetName;
-            objectButton.GetComponentInChildren<TextMeshProUGUI>().fontSize = 9;
+            objectButton.GetComponentInChildren<TextMeshProUGUI>().fontSize = 0;
             objectButton.GetComponentInChildren<TextMeshProUGUI>().color = Color.black;
             button.GetComponent<Outline>().effectColor = Color.black;
             
-            GameObject buttonDelete = Instantiate(saveButton, saveHolder.position, saveHolder.rotation, saveHolder);
+            GameObject buttonDelete = Instantiate(saveButton, deleteHolder.position, deleteHolder.rotation, deleteHolder);
             buttonDelete.GetComponentInChildren<TextMeshProUGUI>().text = "DELETE";
-            buttonDelete.GetComponentInChildren<TextMeshProUGUI>().fontSize = 9;
+            buttonDelete.GetComponentInChildren<TextMeshProUGUI>().fontSize = 0;
             buttonDelete.GetComponentInChildren<TextMeshProUGUI>().color = Color.black;
             buttonDelete.GetComponent<Button>().onClick.AddListener(delegate { DeletePreset(saveDataList.saveList.IndexOf(save)); });
+        }
+    }
+
+    public void MenuButton()
+    {
+        if (isOpen == false)
+        {
+            isOpen = true;
+            loadAnimator.SetBool("open", true);
+            loadButtonAnimator.SetBool("open", true);
+            foreach (Transform child in loadHolder)
+            {
+                child.GetComponentInChildren<TextMeshProUGUI>().fontSize = 9;
+                child.GetComponent<Outline>().enabled = true;
+            }
+            foreach (Transform child in deleteHolder)
+            {
+                child.GetComponentInChildren<TextMeshProUGUI>().fontSize = 9;
+                child.GetComponent<Outline>().enabled = true;
+            }
+        }
+        else
+        {
+            loadAnimator.SetBool("open", false);
+            loadButtonAnimator.SetBool("open", false);
+            isOpen = false;
+            foreach (Transform child in loadHolder)
+            {
+                child.GetComponentInChildren<TextMeshProUGUI>().fontSize = 0;
+                child.GetComponent<Outline>().enabled = false;
+            }
+            foreach (Transform child in deleteHolder)
+            {
+                child.GetComponentInChildren<TextMeshProUGUI>().fontSize = 0;
+                child.GetComponent<Outline>().enabled = false;
+            }
         }
     }
 }
