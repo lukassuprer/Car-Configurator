@@ -243,6 +243,16 @@ public class SaveManager : MonoBehaviour
                 child.GetComponentInChildren<TextMeshProUGUI>().fontSize = 9;
                 child.GetComponent<Outline>().enabled = true;
             }
+            /*if (loadHolder.childCount < 3)
+            {
+                loadHolder.GetComponent<VerticalLayoutGroup>().childControlHeight = false;
+                loadHolder.GetComponent<VerticalLayoutGroup>().childControlWidth = false;
+            }
+            else if (loadHolder.childCount >= 3)
+            {
+                loadHolder.GetComponent<VerticalLayoutGroup>().childControlHeight = true;
+                loadHolder.GetComponent<VerticalLayoutGroup>().childControlWidth = true;
+            }*/
         }
         else
         {
