@@ -43,12 +43,5 @@ public class FreeLookInput : MonoBehaviour
         {
             freeLookCamera.m_Lens.FieldOfView--;
         }
-
-        /*if (Input.mousePosition.y >= Screen.height)
-        {
-            [DllImport("user32.dll")]
-            static extern bool SetCursorPos(float X, float Y);
-            SetCursorPos(Input.mousePosition.x, 0);
-        }*/
     }
 }

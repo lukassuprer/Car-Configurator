@@ -31,31 +31,13 @@ public class SaveManager : MonoBehaviour
     {
         saveObject = new SaveObject();
         SetValues();
-        //SaveDataList saveList = GetSaveData();
         saveDataList = GetSaveData();
         SpawnUISave();
         saveDataList.saveList.Add(saveObject);
-        //saveList.saveList.Add(saveObject);
-        //SaveData(saveList);
     }
 
     private void Update()
     {
-        if (Input.GetKeyDown(KeyCode.S))
-        {
-            //SaveDataList saveList = GetSaveData();
-            //saveDataList = GetSaveData();
-            SaveData(saveDataList);
-            /*saveObject = new SaveObject();
-            string json = JsonUtility.ToJson(saveObject);
-            Debug.Log(json);*/
-        }
-
-        if (Input.GetKeyDown(KeyCode.L))
-        {
-            //SaveDataList saveList = GetSaveData();
-        }
-
         if (saveDataList.saveList.Count <= 0)
         {
             saveObject = new SaveObject();
@@ -80,33 +62,16 @@ public class SaveManager : MonoBehaviour
 
     private void SaveData(SaveDataList saveList)
     {
-        //saveDataList.saveList.Add(saveObject);
-        /*string json = JsonUtility.ToJson(saveList);
-        if (!File.Exists(path))
-        {
-            File.WriteAllText(path, json);
-        }
-        else
-        {
-            File.AppendAllText(path, json);
-        }*/
         using (StreamWriter stream = new StreamWriter(path))
         {
             string json = JsonUtility.ToJson(saveDataList, true);
             Debug.Log(json);
             stream.Write(json);
         }
-        //SpawnUISave();
-        /*saveObject = new SaveObject();
-        saveDataList.saveList.Add(saveObject);*/
     }
 
     private SaveDataList GetSaveData()
     {
-        /*string json = File.ReadAllText(path);
-        Debug.Log(json);
-        return JsonUtility.FromJson<SaveList>(json);*/
-
         if (!File.Exists(path))
         {
             File.Create(path).Dispose();
@@ -160,7 +125,6 @@ public class SaveManager : MonoBehaviour
     {
         saveObject.presetName = inputDeleteField.text;
         saveMenu.SetActive(true);
-        //saveDataList.saveList.Add(saveObject);
         SaveData(saveDataList);
         saveDataList = GetSaveData();
         SpawnUISave();
@@ -219,9 +183,10 @@ public class SaveManager : MonoBehaviour
             button.GetComponent<Outline>().effectColor = Color.black;
             
             GameObject buttonDelete = Instantiate(saveButton, deleteHolder.position, deleteHolder.rotation, deleteHolder);
-            buttonDelete.GetComponentInChildren<TextMeshProUGUI>().text = "DELETE";
-            buttonDelete.GetComponentInChildren<TextMeshProUGUI>().fontSize = 0;
-            buttonDelete.GetComponentInChildren<TextMeshProUGUI>().color = Color.black;
+            TextMeshProUGUI buttonDeleteText = buttonDelete.GetComponentInChildren<TextMeshProUGUI>();
+            buttonDeleteText.text = "DELETE";
+            buttonDeleteText.fontSize = 0;
+            buttonDeleteText.color = Color.black;
             buttonDelete.GetComponent<Button>().onClick.AddListener(delegate { DeletePreset(saveDataList.saveList.IndexOf(save)); });
         }
     }
@@ -243,16 +208,6 @@ public class SaveManager : MonoBehaviour
                 child.GetComponentInChildren<TextMeshProUGUI>().fontSize = 9;
                 child.GetComponent<Outline>().enabled = true;
             }
-            /*if (loadHolder.childCount < 3)
-            {
-                loadHolder.GetComponent<VerticalLayoutGroup>().childControlHeight = false;
-                loadHolder.GetComponent<VerticalLayoutGroup>().childControlWidth = false;
-            }
-            else if (loadHolder.childCount >= 3)
-            {
-                loadHolder.GetComponent<VerticalLayoutGroup>().childControlHeight = true;
-                loadHolder.GetComponent<VerticalLayoutGroup>().childControlWidth = true;
-            }*/
         }
         else
         {

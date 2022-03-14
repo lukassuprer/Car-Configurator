@@ -69,6 +69,5 @@ public class ChangePosition : MonoBehaviour
         Camera.position = cameraRig.transform.position;
         Camera.rotation = cameraRig.transform.rotation;
         Camera.Translate(Vector3.back * 5, cameraRig.transform);
-        //cameraRig.GetComponent<CameraOrbit>().UnZoomCamera();
     }
 }
