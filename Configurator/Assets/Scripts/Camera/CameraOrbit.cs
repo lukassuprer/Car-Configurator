@@ -60,17 +60,17 @@ public class CameraOrbit : MonoBehaviour
             {
                 for (int i = 0; i < 100; i += 5)
                 {
-                    rotationY -= 5;
-                    transform.DORotate(new Vector3(rotationX, rotationY, 0), 1f);
                     if (Input.GetMouseButton(0))
                     {
-                        DOTween.Pause(this);
                         Debug.Log("hm");
+                        DOTween.Pause(this);
                         isStopping = false;
                         copiedRotation = false;
                         i += 100;
-                        return;
+                        break;
                     }
+                    rotationY -= 5;
+                    transform.DORotate(new Vector3(rotationX, rotationY, 0), 1f);
                     //transform.rotation = Quaternion.Lerp(transform.rotation, Quaternion.Euler(rotationX, rotationY, 0), 1f);
                 }
 
@@ -81,8 +81,6 @@ public class CameraOrbit : MonoBehaviour
             {
                 for (int i = 0; i < 100; i += 5)
                 {
-                    rotationY += 5;
-                    transform.DORotate(new Vector3(rotationX, rotationY, 0), 1f);
                     if (Input.GetMouseButton(0))
                     {
                         DOTween.Pause(this);
@@ -92,6 +90,8 @@ public class CameraOrbit : MonoBehaviour
                         i += 100;
                         return;
                     }
+                    rotationY += 5;
+                    transform.DORotate(new Vector3(rotationX, rotationY, 0), 1f);
                     //transform.rotation = Quaternion.Lerp(transform.rotation, Quaternion.Euler(rotationX, rotationY, 0), 1f);
                 }
 
