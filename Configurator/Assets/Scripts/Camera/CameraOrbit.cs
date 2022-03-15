@@ -58,9 +58,9 @@ public class CameraOrbit : MonoBehaviour
             }*/
             if (secRotationY > rotationY)
             {
-                for (int i = 0; i < 30; i++)
+                for (int i = 0; i < 100; i += 5)
                 {
-                    rotationY--;
+                    rotationY -= 5;
                     transform.DORotate(new Vector3(rotationX, rotationY, 0), 1f);
                     if (Input.GetMouseButton(0))
                     {
@@ -79,9 +79,9 @@ public class CameraOrbit : MonoBehaviour
             }
             else if (secRotationY < rotationY)
             {
-                for (int i = 0; i < 30; i++)
+                for (int i = 0; i < 100; i += 5)
                 {
-                    rotationY++;
+                    rotationY += 5;
                     transform.DORotate(new Vector3(rotationX, rotationY, 0), 1f);
                     if (Input.GetMouseButton(0))
                     {
