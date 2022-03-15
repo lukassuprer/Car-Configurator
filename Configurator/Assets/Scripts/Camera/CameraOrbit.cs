@@ -129,14 +129,6 @@ public class CameraOrbit : MonoBehaviour
             //rb.MoveRotation(Quaternion.Euler(rotationX,rotationY,0));
             //transform.localRotation = Quaternion.Lerp(transform.localRotation, Quaternion.Euler(rotationX, rotationY, 0), Time.deltaTime * moveSpeed);
         }
-
-        if (Input.GetKey(KeyCode.A))
-        {
-            transform.rotation = (Quaternion.RotateTowards(transform.rotation,
-                rb.inertiaTensorRotation = Quaternion.Euler(rotationX, rotationY, 0) *
-                                           Quaternion.Euler(rotationX, rotationY, 0), 10f));
-        }
-
         ZoomCamera();
     }
 
