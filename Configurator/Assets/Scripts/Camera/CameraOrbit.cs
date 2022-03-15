@@ -32,17 +32,18 @@ public class CameraOrbit : MonoBehaviour
     private void Update()
     {
         CameraControl();
-        
+
         if (Input.GetMouseButtonUp(0))
         {
             isStopping = true;
         }
+
         if (isStopping)
         {
             //Rotace pokračuje
             //transform.rotation = (Quaternion.RotateTowards(transform.rotation, rb.inertiaTensorRotation = Quaternion.Euler(rotationX, rotationY, 0) * Quaternion.Euler(rotationX, rotationY, 0), 10f));
             //transform.rotation = Quaternion.Lerp(transform.rotation, transform.rotation * Quaternion.Euler(rotationX, rotationY, 0), Time.deltaTime);
-            
+
             //transform.rotation = (Quaternion.Lerp(transform.rotation, Quaternion.Euler(rotationX, rotationY, 0) * Quaternion.Euler(rotationX, rotationY, 0), Time.deltaTime));
             //rb.MoveRotation(Quaternion.Lerp(transform.rotation, Quaternion.Euler(rotationX, rotationY, 0) * Quaternion.Euler(rotationX, rotationY, 0), Time.deltaTime));
             //transform.rotation = Quaternion.Euler(rotationX,rotationY,0);
@@ -57,45 +58,43 @@ public class CameraOrbit : MonoBehaviour
             }*/
             if (secRotationY > rotationY)
             {
-                for (int i = 0; i < 20; i++)
+                for (int i = 0; i < 30; i++)
                 {
+                    rotationY--;
+                    transform.DORotate(new Vector3(rotationX, rotationY, 0), 1f);
                     if (Input.GetMouseButton(0))
                     {
+                        DOTween.Pause(this);
                         Debug.Log("hm");
                         isStopping = false;
                         copiedRotation = false;
-                        break;
-                    }
-                    else
-                    {
-                        rotationY--;
-                        transform.DORotate(new Vector3(rotationX, rotationY, 0), 1f);
+                        i += 100;
+                        return;
                     }
                     //transform.rotation = Quaternion.Lerp(transform.rotation, Quaternion.Euler(rotationX, rotationY, 0), 1f);
                 }
-                
+
                 isStopping = false;
                 copiedRotation = false;
             }
-            else if(secRotationY < rotationY)
+            else if (secRotationY < rotationY)
             {
-                for (int i = 0; i < 20; i++)
+                for (int i = 0; i < 30; i++)
                 {
+                    rotationY++;
+                    transform.DORotate(new Vector3(rotationX, rotationY, 0), 1f);
                     if (Input.GetMouseButton(0))
                     {
+                        DOTween.Pause(this);
                         Debug.Log("hm");
                         isStopping = false;
                         copiedRotation = false;
-                        break;
-                    }
-                    else
-                    {
-                        rotationY++;
-                        transform.DORotate(new Vector3(rotationX, rotationY, 0), 1f);
+                        i += 100;
+                        return;
                     }
                     //transform.rotation = Quaternion.Lerp(transform.rotation, Quaternion.Euler(rotationX, rotationY, 0), 1f);
                 }
-                
+
                 isStopping = false;
                 copiedRotation = false;
             }
@@ -112,6 +111,7 @@ public class CameraOrbit : MonoBehaviour
                 copiedRotation = true;
                 secRotationY = rotationY;
             }
+
             isStopping = false;
             float movementX = Input.GetAxis("Mouse X") * moveSpeed * Time.deltaTime;
             float movementY = Input.GetAxis("Mouse Y") * moveSpeed * Time.deltaTime;
@@ -124,7 +124,7 @@ public class CameraOrbit : MonoBehaviour
             /*rb.inertiaTensorRotation = Quaternion.Euler(rotationX, rotationY, 0);
             Debug.Log(rb.inertiaTensorRotation); */
             //rb.MoveRotation(Quaternion.Euler(rotationX, rotationY, 0));
-            transform.rotation = Quaternion.Euler(rotationX,rotationY,0);
+            transform.rotation = Quaternion.Euler(rotationX, rotationY, 0);
             //rb.AddTorque(new Vector3(rotationX,rotationY,0));
             //rb.MoveRotation(Quaternion.Euler(rotationX,rotationY,0));
             //transform.localRotation = Quaternion.Lerp(transform.localRotation, Quaternion.Euler(rotationX, rotationY, 0), Time.deltaTime * moveSpeed);
@@ -132,9 +132,11 @@ public class CameraOrbit : MonoBehaviour
 
         if (Input.GetKey(KeyCode.A))
         {
-            transform.rotation = (Quaternion.RotateTowards(transform.rotation, rb.inertiaTensorRotation = Quaternion.Euler(rotationX, rotationY, 0) * Quaternion.Euler(rotationX, rotationY, 0), 10f));
+            transform.rotation = (Quaternion.RotateTowards(transform.rotation,
+                rb.inertiaTensorRotation = Quaternion.Euler(rotationX, rotationY, 0) *
+                                           Quaternion.Euler(rotationX, rotationY, 0), 10f));
         }
-        
+
         ZoomCamera();
     }
 
