@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEditor.Build;
 using UnityEngine;
+using DG.Tweening;
 
 public class ChangePosition : MonoBehaviour
 {
@@ -58,8 +59,8 @@ public class ChangePosition : MonoBehaviour
 
     private void DisableCam(int index)
     {
-        Camera.position = positionsList[index].positionGameObject.position;
-        Camera.rotation = positionsList[index].positionGameObject.rotation;
+        Camera.DOMove(positionsList[index].positionGameObject.position, 1f);
+        Camera.DORotateQuaternion(positionsList[index].positionGameObject.rotation, 1f);
         cameraRig.GetComponent<CameraOrbit>().enabled = false;
     }
 

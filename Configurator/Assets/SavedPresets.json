@@ -1,28 +1,10 @@
 {
     "saveList": [
         {
-            "presetName": "hehe",
-            "spoilerIndex": 1,
-            "wheelsIndex": 3,
-            "colorName": "FF00FFFF"
-        },
-        {
             "presetName": "hah",
             "spoilerIndex": 0,
             "wheelsIndex": 0,
             "colorName": "FF00FFFF"
-        },
-        {
-            "presetName": "hah",
-            "spoilerIndex": 0,
-            "wheelsIndex": 0,
-            "colorName": "FF00FFFF"
-        },
-        {
-            "presetName": "pink car",
-            "spoilerIndex": 3,
-            "wheelsIndex": 1,
-            "colorName": "magenta"
         }
     ]
 }

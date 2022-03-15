@@ -44,20 +44,6 @@ public class SaveManager : MonoBehaviour
             SetValues();
             saveDataList.saveList.Add(saveObject);
         }
-
-        if (isOpen == true)
-        {
-            foreach (Transform child in loadHolder)
-            {
-                child.GetComponentInChildren<TextMeshProUGUI>().fontSize = 9;
-                child.GetComponent<Outline>().enabled = true;
-            }
-            foreach (Transform child in deleteHolder)
-            {
-                child.GetComponentInChildren<TextMeshProUGUI>().fontSize = 9;
-                child.GetComponent<Outline>().enabled = true;
-            }
-        }
     }
 
     private void SaveData(SaveDataList saveList)
@@ -131,6 +117,7 @@ public class SaveManager : MonoBehaviour
         saveObject = new SaveObject();
         SetValues();
         saveDataList.saveList.Add(saveObject);
+        saveMenu.SetActive(false);
     }
 
     public void CancelButton()
@@ -181,13 +168,26 @@ public class SaveManager : MonoBehaviour
             objectButton.GetComponentInChildren<TextMeshProUGUI>().fontSize = 0;
             objectButton.GetComponentInChildren<TextMeshProUGUI>().color = Color.black;
             button.GetComponent<Outline>().effectColor = Color.black;
-            
+
             GameObject buttonDelete = Instantiate(saveButton, deleteHolder.position, deleteHolder.rotation, deleteHolder);
             TextMeshProUGUI buttonDeleteText = buttonDelete.GetComponentInChildren<TextMeshProUGUI>();
             buttonDeleteText.text = "DELETE";
             buttonDeleteText.fontSize = 0;
             buttonDeleteText.color = Color.black;
             buttonDelete.GetComponent<Button>().onClick.AddListener(delegate { DeletePreset(saveDataList.saveList.IndexOf(save)); });
+            if (isOpen == true)
+            {
+                foreach (Transform child in loadHolder)
+                {
+                    child.GetComponentInChildren<TextMeshProUGUI>().fontSize = 9;
+                    child.GetComponent<Outline>().enabled = true;
+                }
+                foreach (Transform child in deleteHolder)
+                {
+                    child.GetComponentInChildren<TextMeshProUGUI>().fontSize = 9;
+                    child.GetComponent<Outline>().enabled = true;
+                }
+            }
         }
     }
 
