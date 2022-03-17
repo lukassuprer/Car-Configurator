@@ -8,6 +8,8 @@ public class ChangePosition : MonoBehaviour
 {
     public Transform Camera;
     public GameObject cameraRig;
+    public Transform target;
+    private float distanceBack = 5f;
     public List<Positions> positionsList = new List<Positions>();
 
     [System.Serializable]
@@ -54,7 +56,7 @@ public class ChangePosition : MonoBehaviour
         EnableCam();
         Camera.position = cameraRig.transform.position;
         Camera.rotation = cameraRig.transform.rotation;
-        Camera.Translate(Vector3.back * 5, cameraRig.transform);
+        Camera.Translate(Vector3.back * distanceBack, cameraRig.transform);
     }
 
     private void DisableCam(int index)
@@ -69,6 +71,7 @@ public class ChangePosition : MonoBehaviour
         cameraRig.GetComponent<CameraOrbit>().enabled = true;
         Camera.position = cameraRig.transform.position;
         Camera.rotation = cameraRig.transform.rotation;
-        Camera.Translate(Vector3.back * 5, cameraRig.transform);
+        /*Camera.DOMove(cameraRig.transform.position - target.forward * 5, 1f);*/
+        Camera.Translate(Vector3.back * distanceBack, cameraRig.transform);
     }
 }

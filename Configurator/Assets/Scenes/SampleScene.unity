@@ -5127,7 +5127,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -319.99994, y: 168}
+  m_AnchoredPosition: {x: -319.99994, y: 210}
   m_SizeDelta: {x: 160, y: 30}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &407950726
@@ -9413,6 +9413,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Camera: {fileID: 963194228}
   cameraRig: {fileID: 717514585}
+  target: {fileID: 4107931236673485}
   positionsList:
   - positionGameObject: {fileID: 227936014}
   - positionGameObject: {fileID: 1733330791}
@@ -18317,7 +18318,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -158, y: 167}
+  m_AnchoredPosition: {x: -158, y: 210}
   m_SizeDelta: {x: 160, y: 30}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1346004484
@@ -18777,7 +18778,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -340.8325, y: 182}
+  m_AnchoredPosition: {x: -340.8325, y: 221}
   m_SizeDelta: {x: 118.3349, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!95 &1363754011

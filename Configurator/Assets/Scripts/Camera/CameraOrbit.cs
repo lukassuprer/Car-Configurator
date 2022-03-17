@@ -58,7 +58,7 @@ public class CameraOrbit : MonoBehaviour
             }*/
             if (secRotationY > rotationY)
             {
-                for (int i = 0; i < 100; i += 5)
+                for (int i = 0; i < 20; i += 1)
                 {
                     if (Input.GetMouseButton(0))
                     {
@@ -73,13 +73,14 @@ public class CameraOrbit : MonoBehaviour
                     transform.DORotate(new Vector3(rotationX, rotationY, 0), 1f);
                     //transform.rotation = Quaternion.Lerp(transform.rotation, Quaternion.Euler(rotationX, rotationY, 0), 1f);
                 }
+                
 
                 isStopping = false;
                 copiedRotation = false;
             }
             else if (secRotationY < rotationY)
             {
-                for (int i = 0; i < 100; i += 5)
+                for (int i = 0; i < 20; i += 1)
                 {
                     if (Input.GetMouseButton(0))
                     {
